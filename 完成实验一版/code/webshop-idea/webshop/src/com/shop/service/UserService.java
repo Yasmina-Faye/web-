@@ -1,0 +1,31 @@
+package com.shop.service;
+
+import com.shop.bean.PageBean;
+import com.shop.bean.User;
+
+import java.util.List;
+
+
+public interface UserService {
+	
+
+	//根据用户名获取总记录数
+	long goodsReadCount(String username);
+
+	//根据用户名模糊查询获取用户列表（分页显示）
+	List<User> userList(PageBean pageBean,String username);
+	//查找用户名是否存在
+	boolean findUser(String userName);
+	//根据id获取一个用户的信息
+	User findUser(Integer id);
+	//增加用户
+	boolean addUser(User user);
+	//更新用户
+	boolean updateUser(User user);
+	//根据id删除一个用户
+	boolean delUser(int id);
+	//根据一组id字符串批量删除用户
+	boolean batDelUser(String ids);
+	//登陆
+	User userLogin(User user);
+}

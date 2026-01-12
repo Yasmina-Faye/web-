@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>测试AJAX用户名验证</title>
+    <script src="bs/js/jquery.min.js"></script>
+</head>
+<body>
+    <h2>测试AJAX用户名验证</h2>
+    <input type="text" id="testUsername" placeholder="输入用户名">
+    <button onclick="testAjax()">测试验证</button>
+    <div id="result"></div>
+    
+    <script>
+        function testAjax() {
+            var userName = $("#testUsername").val();
+            $("#result").html("正在检测...");
+            
+            $.ajax({
+                url: "UserServlet?action=checkUsername",
+                type: "GET",
+                data: { userName: userName },
+                dataType: "json",
+                success: function(data) {
+                    $("#result").html("响应: " + JSON.stringify(data));
+                    console.log("Success:", data);
+                },
+                error: function(xhr, status, error) {
+                    $("#result").html("错误: " + status + " - " + error);
+                    console.log("Error:", xhr.responseText);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
